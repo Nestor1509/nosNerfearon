@@ -13,6 +13,13 @@
 #define pii pair<int, int>
 #define vi vector<int>
 #define vpi vector<pair<int, int>>
+#define ms(x, n) memset(x, n, sizeof(x))
+#define find(x, n) find(all(x), n) != x.end()
+#define suma(a, b) ((a % MOD) + (b % MOD)) % MOD
+#define resta(a, b) ((a % MOD) - (b % MOD)) % MOD
+#define mult(a, b) ((a % MOD) * (b % MOD)) % MOD
+#define div(a, b) ((a % MOD) * (modularInverse(b, MOD))) % MOD
+//" \n"[i == n - 1]
 using namespace std;
 // NosNerfearon();
 signed main() {
