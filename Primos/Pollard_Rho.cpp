@@ -1,4 +1,4 @@
-//PollarRho
+//PollarRho O(3√n)
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 ll aleatorio(ll a, ll b){
 	std::uniform_int_distribution<ll> dist(a, b);
