@@ -40,11 +40,8 @@ struct edge{
 	int source, dest, cost;
 
 	edge(): source(0), dest(0), cost(0){}
-
 	edge(int dest, int cost): dest(dest), cost(cost){}
-
 	edge(int source, int dest, int cost): source(source), dest(dest), cost(cost){}
-
 	bool operator==(const edge & b) const{
 		return source == b.source && dest == b.dest && cost == b.cost;
 	}
