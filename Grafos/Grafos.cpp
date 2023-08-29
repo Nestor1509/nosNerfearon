@@ -157,10 +157,6 @@ struct graph{
 		return paths;
 	}
 
-
-
-
-
 	vector<vi> floyd(){
 		vector<vi> tmp = costMatrix;
 		for(int k = 0; k < V; ++k)
