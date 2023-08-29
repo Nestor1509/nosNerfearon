@@ -96,7 +96,7 @@ struct graph{
 		}
 	}
 
-	vector<path> dijkstra(int start){
+	vector<path> dijkstra(int start){//O((V + E) log V)
 		priority_queue<edge, vector<edge>, greater<edge>> cola;
 		vector<path> paths(V);
 		cola.emplace(start, 0);
@@ -121,7 +121,7 @@ struct graph{
 		return paths;
 	}
 
-	vector<path> bellmanFord(int start){
+	vector<path> bellmanFord(int start){//O(|V|*|E|)
 		vector<path> paths(V, path());
 		vi processed(V);
 		vb inQueue(V);
@@ -157,7 +157,7 @@ struct graph{
 		return paths;
 	}
 
-	vector<vi> floyd(){
+	vector<vi> floyd(){//O(V^3)
 		vector<vi> tmp = costMatrix;
 		for(int k = 0; k < V; ++k)
 			for(int i = 0; i < V; ++i)
