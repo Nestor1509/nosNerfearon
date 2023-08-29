@@ -176,7 +176,7 @@ struct graph{
 		return tmp;
 	}
 
-	vector<vb> transitiveClosureDFS(){//O(V^2) grafico disperso, O(V^3) grafico denso
+	vector<vb> transitiveClosureDFS(){//O(V^2)
 		vector<vb> tmp(V, vb(V));
 		function<void(int, int)> dfs = [&](int start, int u){
 			for(edge & current : adjList[u]){
@@ -192,7 +192,7 @@ struct graph{
 		return tmp;
 	}
 
-	bool isBipartite(){
+	bool isBipartite(){//O(V + E)
 		vi side(V, -1);
 		queue<int> q;
 		for (int st = 0; st < V; ++st){
