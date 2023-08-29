@@ -380,11 +380,11 @@ struct graph{
 		return false;
 	}
 
-	//vertices from the left side numbered from 0 to l-1
-	//vertices from the right side numbered from 0 to r-1
-	//graph[u] represents the left side
-	//graph[u][v] represents the right side
-	//we can use tryKuhn() or augmentingPath()
+	//vértices del lado izquierdo numerados de 0 a l-1
+	//vértices del lado derecho numerados de 0 a r-1
+	//graph[u] representa el lado izquierdo
+	//graph[u][v] representa el lado derecho
+	//podemos usar tryKuhn() o augmentingPath()
 	vector<pair<int, int>> maxMatching(int l, int r){
 		vi left(l, -1), right(r, -1);
 		vb used(l);
