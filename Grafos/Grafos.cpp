@@ -167,7 +167,7 @@ struct graph{
 		return tmp;
 	}
 
-	vector<vb> transitiveClosure(){
+	vector<vb> transitiveClosure(){//O(V^3)
 		vector<vb> tmp = adjMatrix;
 		for(int k = 0; k < V; ++k)
 			for(int i = 0; i < V; ++i)
@@ -176,7 +176,7 @@ struct graph{
 		return tmp;
 	}
 
-	vector<vb> transitiveClosureDFS(){
+	vector<vb> transitiveClosureDFS(){//O(V^2) grafico disperso, O(V^3) grafico denso
 		vector<vb> tmp(V, vb(V));
 		function<void(int, int)> dfs = [&](int start, int u){
 			for(edge & current : adjList[u]){
