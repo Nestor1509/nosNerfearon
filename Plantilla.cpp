@@ -21,7 +21,11 @@
 #define div(a, b) ((a % MOD) * (modularInverse(b, MOD))) % MOD
 //" \n"[i == n - 1]
 using namespace std;
+//comprobar limetes
+//pobrar casos de prueba diferentes
+//revisar la salidas de presetation error
 // NosNerfearon();
+
 signed main() {
     fast
     
