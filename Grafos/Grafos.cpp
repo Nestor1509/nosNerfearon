@@ -7,6 +7,13 @@ int inf = 1 << 30;
 
 struct disjointSet{//O(n)
 	//no dirigido
+	/*
+ 	Se nos dan varios elementos, cada uno de los cuales es un conjunto separado.
+  	Una DSU tendrá una operación para combinar dos conjuntos cualesquiera y podrá
+   	saber en qué conjunto se encuentra un elemento específico.
+    	La versión clásica también introduce una tercera operación: puede crear un conjunto
+     	a partir de un nuevo elemento.
+ 	*/
 	int N;
 	vector<short int> rank;
 	vi parent, count;
@@ -54,7 +61,7 @@ struct edge{
 	}
 };
 
-struct path{
+struct path{//camino
 	int cost = inf;
 	deque<int> vertices;
 	int size = 1;
@@ -98,6 +105,9 @@ struct graph{
 	}
 
 	vector<path> dijkstra(int start){//O((V + E) log V)
+		//distancia minima de 1 a todos los nodos
+		//los datos no pueden ser negativos
+		//salvo que el grafo sea dirigido o sin ciclos
 		priority_queue<edge, vector<edge>, greater<edge>> cola;
 		vector<path> paths(V);
 		cola.emplace(start, 0);
@@ -123,6 +133,8 @@ struct graph{
 	}
 
 	vector<path> bellmanFord(int start){//O(|V|*|E|)
+		//distancia minima de 1 a todos los nodos
+		//no importa si son negativos
 		vector<path> paths(V, path());
 		vi processed(V);
 		vb inQueue(V);
@@ -159,6 +171,7 @@ struct graph{
 	}
 
 	vector<vi> floyd(){//O(V^3)
+		//camino minimo de todos los nodos con todos
 		vector<vi> tmp = costMatrix;
 		for(int k = 0; k < V; ++k)
 			for(int i = 0; i < V; ++i)
@@ -169,6 +182,7 @@ struct graph{
 	}
 
 	vector<vb> transitiveClosure(){//O(V^3)
+		//da una matriz con true si se puede llegar del nodo i al nodo j
 		vector<vb> tmp = adjMatrix;
 		for(int k = 0; k < V; ++k)
 			for(int i = 0; i < V; ++i)
@@ -178,6 +192,7 @@ struct graph{
 	}
 
 	vector<vb> transitiveClosureDFS(){//O(V^2)
+		//da una matriz con true si se puede llegar del nodo i al nodo j
 		vector<vb> tmp(V, vb(V));
 		function<void(int, int)> dfs = [&](int start, int u){
 			for(edge & current : adjList[u]){
@@ -194,6 +209,7 @@ struct graph{
 	}
 
 	bool isBipartite(){//O(V + E)
+		//true si un grafo es bitartito
 		vi side(V, -1);
 		queue<int> q;
 		for (int st = 0; st < V; ++st){
@@ -217,7 +233,17 @@ struct graph{
 		return true;
 	}
 
-	vi topologicalSort(){
+	vi topologicalSort(){//O(n)
+		/*
+  		NO DEBEN HABER CICLOS
+  		Una ordenación topológica de un grafo acíclico dirigido G
+    		es una ordenación lineal de todos los nodos
+    		de G que satisface que si G contiene la arista dirigida uv
+      		entonces el nodo u aparece antes del nodo v.
+		Dado que el nodo 1 apunta a los nodos 2 y 3, el nodo 1 aparece
+  		antes que ellos en el orden. Y, dado que los nodos 2 y 3 apuntan
+    		al nodo 4, aparecen antes de él en el orden.
+  		*/
 		int visited = 0;
 		vi order, indegree(V);
 		for(auto & node : adjList){
@@ -245,7 +271,8 @@ struct graph{
 		else return {};
 	}
 
-	bool hasCycle(){
+	bool hasCycle(){//O(V + E)
+		//true si tiene ciclos
 		vi color(V);
 		function<bool(int, int)> dfs = [&](int u, int parent){
 			color[u] = 1;
@@ -268,6 +295,8 @@ struct graph{
 	}
 
 	pair<vb, vector<edge>> articulationBridges(){
+		//aristas de cortes que al eliminarla se generan
+		//mas componentes de las que ya tenia el grafo
 		vi low(V), label(V);
 		vb points(V);
 		vector<edge> bridges;
@@ -297,7 +326,8 @@ struct graph{
 		return make_pair(points, bridges);
 	}
 
-	vector<vi> scc(){
+	vector<vi> scc(){//O(V + E)
+		//
 		vi low(V), label(V);
 		int time = 0;
 		vector<vi> ans;
