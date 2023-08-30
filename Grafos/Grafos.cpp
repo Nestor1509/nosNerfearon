@@ -5,7 +5,8 @@ typedef vector<int> vi;
 typedef vector<bool> vb;
 int inf = 1 << 30;
 
-struct disjointSet{//no dirigido
+struct disjointSet{//O(n)
+	//no dirigido
 	int N;
 	vector<short int> rank;
 	vi parent, count;
