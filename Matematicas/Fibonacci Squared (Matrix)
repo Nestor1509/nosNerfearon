@@ -1,0 +1,87 @@
+#include <bits/stdc++.h>
+#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define int long long
+#define endl '\n'
+//" \n"[i == n - 1]
+using namespace std;
+// NosNerfearon();
+/*
+Recurrencias lineales no Homogeneas
+Si nuestra relaci´on de recurrencia no es homog´enea, por ejemplo es
+si = c1si−1 + c2si−2 + . . . + cnsi−n + D, entonces podemos trasformarla en
+una homog´enea, que depende de n + 1 t´erminos en lugar de n.
+Tomemos como ejemplo si = si−1 + si−2 + 1
+si − si−1 = si−1 + si−2 + 1 − (si−2 + si−3 + 1)
+= si−1 − si−3
+si = 2si−1 − si−3
+Esta misma idea puede aplicarse si la recurrencia es de la forma
+si = c1si−1 + c2si−2 + . . . + cnsi−n + Di. O en general de la forma
+si = c1si−1 + c2si−2 + . . . + cnsi−n + P(i) donde P es un polinomio.
+Cada vez que aplicamos el paso de arriba, disminuimos el grado del
+polinomio en uno y aumentamos la longitud de la recurrencia en uno.
+*/
+const int MOD = 1e9 + 7;
+struct matrix {
+  int n, m;
+  vector<vector<int>> v;
+
+  matrix(int n, int m, bool ones = false) : n(n), m(m), v(n, vector<int>(m)) {
+    if (ones) forn (i, n) v[i][i] = 1;
+  }
+
+  matrix operator * (const matrix &o) {
+    matrix ans(n, o.m);
+    forn (i, n)
+      forn (k, m) if (v[i][k])
+        forn (j, o.m)
+          ans[i][j] = (v[i][k] * o.v[k][j] + ans[i][j]) % MOD;
+    return ans;
+  }
+
+  vector<int> & operator [] (int i) {
+    return v[i];
+  }
+};
+
+matrix binpow(matrix b, int e) {
+  matrix ans(b.n, b.m, true);
+  while (e) {
+    if (e & 1) ans = ans * b;
+    b = b * b;
+    e >>= 1;
+  }
+  return ans;
+}
+signed main() {
+    matrix a(5, 5), b(5, 5);
+    // La matriz a se llena con los coeficientes de la recurrencia
+    a[0][0] = 4;
+    a[0][1] = (-5 + MOD) % MOD;
+    a[0][2] = 1;
+    a[0][3] = 2;
+    a[0][4] = (-1 + MOD) % MOD;
+    //Se llena la diagonal desde i = 1, con unos(1).
+    forn(i, 4) a[i + 1][i] = 1;
+
+    //La matriz b se llena con los primeros x terminos de la recurrencia
+    // x es la cantidad de terminos de la recurrencia
+    b[0][0] = 89;
+    b[1][0] = 38;
+    b[2][0] = 14;
+    b[3][0] = 1;
+    b[4][0] = 0;
+
+    int t; cin >> t;
+    while(t--){
+        int n; cin >> n;
+        if(n < 5){
+            cout << b[4 - n][0] << endl;
+        }else{
+            //Se le resta a n el numero de terminos de la recurrencia menos uno.
+            matrix ans = binpow(a, n - 4) * b;
+            //La respuesta queda guardada en [0, 0].
+            cout << ans[0][0] << endl;
+        }
+    }
+    cout << flush;
+}
