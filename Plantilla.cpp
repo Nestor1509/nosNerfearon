@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+//typedef long long ll;
 #define int long long
 #define endl '\n'
 #define ff first
