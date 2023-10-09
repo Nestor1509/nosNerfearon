@@ -24,7 +24,7 @@
 using namespace std;
 //comprobar limetes
 //pobrar casos de prueba diferentes
-//revisar la salidas de presetation error
+//revisar las salidas de presetation error
 //nosNerfearon();
 
 signed main() {
