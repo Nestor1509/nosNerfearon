@@ -11,7 +11,7 @@
 #define pb push_back
 #define all(x) x.begin(), x.end()
 #define sz(x) x.size()
-#define pii pair<int, int>
+#define ii pair<int, int>
 #define vi vector<int>
 #define vpi vector<pair<int, int>>
 #define ms(x, n) memset(x, n, sizeof(x))
