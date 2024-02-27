@@ -21,6 +21,7 @@
 #define endl '\n'
 #define ff first
 using namespace std;
+//" \n"[i == n - 1]
 // NosNerfearon();
 signed main(){
     fast
