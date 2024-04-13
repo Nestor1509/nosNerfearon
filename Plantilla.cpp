@@ -1,6 +1,6 @@
 #include <bits/stdc++.h> //
-#define fast ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define rfor(i, n) for (int i = n - 1; i >= 0; i--)
+#define fast ios_base::sync_with_stdio(0); cin.tie(0);
+#define rfor(i, n) for (int i = n; i >= 0; i--)
 #define form(i, n, m) for (int i = n; i <= m; i++)
 #define forn(i, n) for (int i = 0; i < n; i++)
 #define vpi vector<pair<int, int>>
@@ -21,10 +21,19 @@
 #define endl '\n'
 #define ff first
 using namespace std;
-//" \n"[i == n - 1]
-// NosNerfearon();
+template <typename T>
+ostream &operator<<(ostream &os, const vector<T> &x) {
+    forn(i, sz(x)) cout << x[i] << " \n"[i == sz(x) - 1];
+    return os;
+}
+//nosNerfearon();
+
 signed main(){
     fast
-    
+    int t; cin >> t;
+    while(t--){
+        
+    }
     cout << flush;
+    return 0;
 }
